@@ -2,7 +2,15 @@ SUFFIXES = {1000: ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             1024: ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB']}
 
 
-def approximate_size(size, a_kilo_byte_is_1024_bytes=True):
+def rename(newname):
+    def decorator(f):
+        f.__name__ = newname
+        return f
+    return decorator
+
+
+@rename('testing')
+def approximate_size(size=0, a_kilo_byte_is_1024_bytes=True):
     '''Convert a file size to human readable form
 
     Keyword Arguments:
@@ -30,3 +38,4 @@ def approximate_size(size, a_kilo_byte_is_1024_bytes=True):
 if __name__ == '__main__':
     print(approximate_size(10**24, False))
     print(approximate_size(1000000000000))
+    print(approximate_size.__name__)
