@@ -1,2 +1,2 @@
-.vscode/
-__pycache__/
+.DS_Store
+okta_tut/.DS_Store
